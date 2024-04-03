@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -80,14 +81,42 @@ fun HomeScreen(){
 
         // Upload Button
         Spacer(modifier = Modifier.height(30.dp))
-        Card(modifier = Modifier
-            .height(50.dp)
-            .width(220.dp)
-            .clickable { singleImagePicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
-            shape = RoundedCornerShape(20.dp),
-            colors = CardDefaults.cardColors(Color.Black)){
-            Box(modifier = Modifier.fillMaxSize().padding(10.dp), contentAlignment = Alignment.Center) {
-                Text("Upload Your XRay", fontSize = 20.sp, color = Color.White, fontWeight = FontWeight.SemiBold)
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+            Card(modifier = Modifier.height(50.dp).width(220.dp).clickable { singleImagePicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))},
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(Color.Black)
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize().padding(10.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "Upload Your XRay",
+                        fontSize = 20.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            // Refresh
+            Card(modifier = Modifier.height(50.dp).width(110.dp).clickable { imageUri = null },
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(Color.Black)
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize().padding(10.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "Reset",
+                        fontSize = 20.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
             }
         }
 
